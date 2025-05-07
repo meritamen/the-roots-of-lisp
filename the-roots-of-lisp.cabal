@@ -1,9 +1,9 @@
 cabal-version:      3.0
 name:               the-roots-of-lisp
 version:            0.1.0.0
-synopsis:           Implementation of LISP interpreter
-description:        Implementation of LISP interpreter
-License:            BSD3
+synopsis:           Implementation of a minimal LISP interpreter
+description:        Implementation of a minimal LISP interpreter
+License:            BSD-3-Clause
 License-file:       LICENSE
 homepage:           https://github.com/meritamen/the-roots-of-lisp
 author:             Meritamen
