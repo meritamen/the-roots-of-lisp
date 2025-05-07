@@ -49,3 +49,19 @@ executable lisp
 
     hs-source-dirs:   app
     default-language: Haskell2010
+
+test-suite lisp-test
+    import:           warnings
+    default-language: Haskell2010
+    other-modules:    ParserSpec
+    -- other-extensions:
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+                      base ^>=4.18.3.0
+                    , hspec
+                    , the-roots-of-lisp
+                    , tasty
+                    , tasty-hspec
+    default-extensions: OverloadedStrings

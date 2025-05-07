@@ -27,20 +27,22 @@ data LispVal
   | LispFn { params :: [Text], body :: [LispVal], closure :: EnvCtx }
 
 instance Eq LispVal where
-  LispSymbol sym0 == LispSymbol sym1   = sym0 == sym1
-  LispT == LispT                       = True
-  LispNil == LispNil                   = True
-  LispNil == LispList []               = True
-  _ == _                               = False
+  LispSymbol sym0 == LispSymbol sym1         = sym0 == sym1
+  LispT == LispT                             = True
+  LispNil == LispNil                         = True
+  LispNil == LispList []                     = True
+  LispList l == LispList r                   = l == r
+  LispDottedList l lt == LispDottedList r rt = l == r && lt == rt
+  _ == _                                     = False
 
 instance Show LispVal where
   show = \case
     LispSymbol sym -> T.unpack sym
-    LispList [] -> "nil"
+    LispList [] -> "()"
     LispList list -> "(" <> unwords (show <$> list) <> ")"
     LispDottedList list e -> "(" <> unwords (show <$> list) <> " . " <> show e <> ")"
     LispT -> "t"
-    LispNil -> "nil"
+    LispNil -> "()"
     LispPrimitive _ -> "#<primitive>"
     LispFn _ _ _ -> "#<lambda>"
 

@@ -20,7 +20,6 @@ lispSymbolP = do
   case text of
     "t"   -> return LispT
     "nil" -> return LispNil
-    "()"  -> return LispNil
     sym   -> return $ LispSymbol sym
 
 lispListP :: Parser LispVal
