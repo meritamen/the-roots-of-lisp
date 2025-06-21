@@ -1,7 +1,3 @@
-{-# LANGUAGE DeriveFunctor              #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE StrictData                 #-}
-
 module Lisp.Types (
   LispVal (..)
   , EnvCtx

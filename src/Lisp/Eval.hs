@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module Lisp.Eval (
   runEval
   , initialEnvCtx
@@ -12,10 +10,10 @@ import Control.Monad.Except
 import Control.Monad.Reader
 import Data.IORef
 import Data.Map (Map)
-import qualified Data.Map as M
+import Data.Map qualified as M
 import Data.Maybe
 import Data.Text (Text)
-import qualified Data.Text.IO as TIO
+import Data.Text.IO qualified as TIO
 import TextShow
 
 import Lisp.Parser

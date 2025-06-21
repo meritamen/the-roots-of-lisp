@@ -7,7 +7,7 @@ module Lisp.Parser (
 import Control.Exception hiding (try)
 import Control.Monad
 import Data.Text (Text)
-import qualified Data.Text.IO as TIO
+import Data.Text.IO qualified as TIO
 import Text.Megaparsec
 import Text.Megaparsec.Char
 
