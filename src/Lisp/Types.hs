@@ -59,6 +59,7 @@ data LispError
   | LispErrorTypeMismatch Text LispVal
   | LispErrorBadSpecialForm Text LispVal
   | LispErrorUnboundVar Text Text
+  deriving Eq
 
 instance TextShow LispError where
   showb = \case

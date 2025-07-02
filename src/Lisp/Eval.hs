@@ -150,6 +150,7 @@ eq [LispT, LispT]               = return LispT
 eq [LispNil , LispNil]          = return LispT
 eq [LispNil, LispList []]       = return LispT
 eq [LispList [], LispNil]       = return LispT
+eq [LispList [], LispList []]   = return LispT
 eq [_, _]                       = return LispNil
 eq badArgList                   = throwError $
                                    LispErrorWrongArgNumber 2 badArgList
