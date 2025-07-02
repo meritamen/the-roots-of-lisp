@@ -34,8 +34,12 @@
   (cond ((and (null x) (null y)) nil)
         (t (cons (list (car x) (car y)) (pair (cdr x) (cdr y))))))
 (defun assoc (x y) (cond ((eq (caar y) x) (cadar y)) (t (assoc x (cdr y)))))
-
-
+(defun subst (x y z)
+  (cond ((atom z)
+         (cond ((eq z y) x)
+               ('t z)))
+        ('t (cons (subst x y (car z))
+                  (subst x y (cdr z))))))
 (defun eval (e a)
   (cond
     ((atom e) (assoc e a))
@@ -64,7 +68,6 @@
   (cond ((eval (caar c) a)
          (eval (cadar c) a))
         (t (evcon (cdr c) a))))
-
 (defun evlis (m a)
   (cond ((null m) ())
         (t (cons (eval (car m) a)
