@@ -2,7 +2,14 @@ cabal-version:      3.0
 name:               the-roots-of-lisp
 version:            0.1.0.0
 synopsis:           Implementation of a minimal LISP interpreter
-description:        Implementation of a minimal LISP interpreter
+description:
+  This is a Lisp interpreter based on Paul Graham's famous article The Roots of
+  Lisp. I have implemented the interpreter with the seven atoms described in
+  the article, without adding any additional features. Of course, the initial
+  version I implemented included integers and strings as data structures, but I
+  removed them for the sake of purity. If you wanted to add extensions, it would
+  be easy to do so. The implementation draws inspiration from Write You A Scheme
+  in 48 Hours and Write You A Scheme, Version 2.
 License:            BSD-3-Clause
 License-file:       LICENSE
 homepage:           https://github.com/meritamen/the-roots-of-lisp
@@ -12,6 +19,9 @@ maintainer:         meritamen@sdf.org
 category:           Language
 build-type:         Simple
 extra-source-files: lispbits/stdlib.lisp
+tested-with:        GHC == 9.6.4
+                  , GHC == 9.8.1
+                  , GHC == 9.8.2
 
 common warnings
     ghc-options: -Wall -Wno-name-shadowing
@@ -26,7 +36,7 @@ library
                     , Lisp.Types
     -- other-modules:
     -- other-extensions:
-    build-depends:    base ^>=4.18.3.0
+    build-depends:    base < 5 && >=4.17.2.1
                     , containers < 0.7 && >= 0.6
                     , haskeline ^>= 0.8.2.1
                     , megaparsec < 9.7 && > 9.4
@@ -51,7 +61,7 @@ executable lisp
     -- other-modules:
     -- other-extensions:
     build-depends:
-                      base ^>=4.18.3.0
+                      base < 5 && >=4.17.2.1
                     , the-roots-of-lisp
 
     hs-source-dirs:   app
@@ -68,7 +78,7 @@ test-suite lisp-test
     hs-source-dirs:   test
     main-is:          Main.hs
     build-depends:
-                      base ^>=4.18.3.0
+                      base < 5 && >=4.17.2.1
                     , hspec
                     , the-roots-of-lisp
                     , tasty
