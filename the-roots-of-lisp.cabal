@@ -74,4 +74,6 @@ test-suite lisp-test
                     , tasty
                     , tasty-hspec
                     , text
-    default-extensions: OverloadedStrings
+    default-extensions:
+                      OverloadedStrings
+                      ImportQualifiedPost
