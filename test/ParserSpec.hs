@@ -2,8 +2,8 @@ module ParserSpec where
 
 import Test.Hspec
 
-import Lisp.Parser
-import Lisp.Types
+import Language.Lisp.Parser
+import Language.Lisp.Types
 
 spec_parseLispSymbol :: Spec
 spec_parseLispSymbol =

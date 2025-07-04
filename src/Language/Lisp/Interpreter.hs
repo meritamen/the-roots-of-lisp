@@ -1,4 +1,4 @@
-module Lisp.Eval (
+module Language.Lisp.Interpreter (
   runEval
   , initialEnvCtx
   , eval
@@ -16,8 +16,8 @@ import Data.Text (Text)
 import Data.Text.IO qualified as TIO
 import TextShow
 
-import Lisp.Parser
-import Lisp.Types
+import Language.Lisp.Parser
+import Language.Lisp.Types
 
 runEval :: Eval a -> EnvCtx -> IO (Either LispError a)
 runEval evaluation = runReaderT (runExceptT . unEval $ evaluation)

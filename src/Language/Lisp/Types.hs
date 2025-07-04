@@ -1,4 +1,4 @@
-module Lisp.Types (
+module Language.Lisp.Types (
   LispVal (..)
   , EnvCtx
   , Eval (..)

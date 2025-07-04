@@ -1,4 +1,4 @@
-module Lisp.Parser (
+module Language.Lisp.Parser (
   parseLispExpr
   , parseLisp
   , parseLispFile
@@ -11,8 +11,8 @@ import Data.Text.IO qualified as TIO
 import Text.Megaparsec
 import Text.Megaparsec.Char
 
-import Lisp.Lexer
-import Lisp.Types
+import Language.Lisp.Lexer
+import Language.Lisp.Types
 
 lispSymbolP :: Parser LispVal
 lispSymbolP = do

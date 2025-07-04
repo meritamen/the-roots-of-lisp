@@ -1,9 +1,9 @@
-module Lisp.Cli (
+module Language.Lisp.Cli (
   run
   ) where
 
 import Options.Applicative
-import Lisp.Repl
+import Language.Lisp.Repl
 
 data Option = Repl | LoadThenRepl String
 

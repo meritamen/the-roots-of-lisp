@@ -28,12 +28,12 @@ common warnings
 
 library
     import:           warnings
-    exposed-modules:  Lisp.Cli
-                    , Lisp.Eval
-                    , Lisp.Lexer
-                    , Lisp.Parser
-                    , Lisp.Repl
-                    , Lisp.Types
+    exposed-modules:  Language.Lisp.Cli
+                    , Language.Lisp.Interpreter
+                    , Language.Lisp.Lexer
+                    , Language.Lisp.Parser
+                    , Language.Lisp.Repl
+                    , Language.Lisp.Types
     -- other-modules:
     -- other-extensions:
     build-depends:    base < 5 && >=4.17.2.1

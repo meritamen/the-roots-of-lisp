@@ -5,9 +5,9 @@ import Data.Text (Text)
 import Data.Text qualified as T
 import Test.Hspec
 
-import Lisp.Eval
-import Lisp.Parser
-import Lisp.Types
+import Language.Lisp.Interpreter
+import Language.Lisp.Parser
+import Language.Lisp.Types
 
 evalWithInitialEnv :: Text -> IO (Either LispError LispVal)
 evalWithInitialEnv input = do

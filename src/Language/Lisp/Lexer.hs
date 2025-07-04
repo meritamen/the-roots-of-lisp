@@ -1,4 +1,4 @@
-module Lisp.Lexer (
+module Language.Lisp.Lexer (
   Parser
   , symbol
   , parens

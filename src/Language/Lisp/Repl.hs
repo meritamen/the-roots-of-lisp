@@ -1,4 +1,4 @@
-module Lisp.Repl (
+module Language.Lisp.Repl (
   runRepl
   ) where
 
@@ -10,9 +10,9 @@ import qualified Data.Text.IO as TIO
 import System.Console.Haskeline
 import TextShow
 
-import Lisp.Eval
-import Lisp.Parser
-import Lisp.Types
+import Language.Lisp.Interpreter
+import Language.Lisp.Parser
+import Language.Lisp.Types
 
 evalText :: EnvCtx -> Text -> IO Text
 evalText envCtxRef text = do
