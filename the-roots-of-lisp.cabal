@@ -11,6 +11,7 @@ maintainer:         meritamen@sdf.org
 category:           Language
 build-type:         Simple
 extra-source-files: lispbits/stdlib.lisp
+tested-with:        GHC == 9.6.7
 
 common warnings
     ghc-options: -Wall -Wno-name-shadowing
