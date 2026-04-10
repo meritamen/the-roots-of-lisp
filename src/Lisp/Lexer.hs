@@ -46,6 +46,4 @@ specialChar :: Parser Char
 specialChar = oneOf ("!#$%&|*+-/:<=>?@^_~'" :: String)
 
 identifier :: Parser Text
-identifier = lexeme . try $
-  fmap T.pack $ (:) <$> (letterChar <|> specialChar)
-                    <*> (many (alphaNumChar <|> specialChar))
+identifier = lexeme . try $ fmap T.pack $ (:) <$> (letterChar <|> specialChar) <*> (many (alphaNumChar <|> specialChar))

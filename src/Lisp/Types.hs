@@ -10,7 +10,7 @@ import Control.Monad.Reader
 import Data.IORef
 import Data.Map (Map)
 import Data.Text (Text)
-import qualified Data.Text  as T
+import Data.Text qualified as T
 import TextShow
 
 data LispVal
@@ -23,13 +23,13 @@ data LispVal
   | LispFn { params :: [Text], body :: [LispVal], closure :: EnvCtx }
 
 instance Eq LispVal where
-  LispSymbol sym0 == LispSymbol sym1         = sym0 == sym1
-  LispT == LispT                             = True
-  LispNil == LispNil                         = True
-  LispNil == LispList []                     = True
-  LispList l == LispList r                   = l == r
+  LispSymbol sym0 == LispSymbol sym1 = sym0 == sym1
+  LispT == LispT = True
+  LispNil == LispNil = True
+  LispNil == LispList [] = True
+  LispList l == LispList r = l == r
   LispDottedList l lt == LispDottedList r rt = l == r && lt == rt
-  _ == _                                     = False
+  _ == _ = False
 
 instance Show LispVal where
   show = \case
@@ -47,7 +47,7 @@ instance TextShow LispVal where showb = fromString . show
 type EnvCtx = IORef (Map Text (IORef LispVal))
 
 newtype Eval a = Eval { unEval :: ExceptT LispError (ReaderT EnvCtx IO) a }
-  deriving (Functor
+  deriving ( Functor
            , Applicative
            , Monad
            , MonadError LispError
@@ -63,10 +63,8 @@ data LispError
 
 instance TextShow LispError where
   showb = \case
-    LispErrorWrongArgNumber i args -> "Expected " <> showb i
-                                      <> " args; found values " <> showb args
-    LispErrorTypeMismatch expected found ->
-      "Invalid type: expected " <> showb expected <> ", found " <> showb found
+    LispErrorWrongArgNumber i args -> "Expected " <> showb i <> " args; found values " <> showb args
+    LispErrorTypeMismatch expected found -> "Invalid type: expected " <> showb expected <> ", found " <> showb found
     LispErrorBadSpecialForm msg form -> fromText msg <> ": " <> showb form
     LispErrorUnboundVar msg var -> fromText msg <> ": " <> fromText var
 

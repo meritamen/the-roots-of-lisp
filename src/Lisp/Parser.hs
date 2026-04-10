@@ -18,35 +18,33 @@ lispSymbolP :: Parser LispVal
 lispSymbolP = do
   text <- identifier
   case text of
-    "t"   -> return LispT
+    "t" -> return LispT
     "nil" -> return LispNil
-    sym   -> return $ LispSymbol sym
+    sym -> return $ LispSymbol sym
 
 lispListP :: Parser LispVal
 lispListP = LispList <$> parens (lispValP `sepEndBy` space)
 
 lispDottedListP :: Parser LispVal
-lispDottedListP
-  = parens $ liftM2 LispDottedList (lispValP `sepEndBy` space) (dot *> lispValP)
+lispDottedListP = parens $ liftM2 LispDottedList (lispValP `sepEndBy` space) (dot *> lispValP)
 
 lispQuoteP :: Parser LispVal
 lispQuoteP = liftM (\x -> LispList [LispSymbol "quote", x]) (quote *> lispValP)
 
 lispValP :: Parser LispVal
-lispValP = choice $
-  [lispQuoteP, lispSymbolP, try lispDottedListP, lispListP]
+lispValP = choice [lispQuoteP, lispSymbolP, try lispDottedListP, lispListP]
 
 content :: Parser p -> Parser p
 content p = space *> p <* eof
 
 parseLispExpr :: Text -> LispVal
 parseLispExpr input = case runParser (content lispValP) "<stdin>" input of
-  Left err     -> throw err
+  Left err -> throw err
   Right result -> result
 
 parseLisp :: Text -> [LispVal]
 parseLisp input = case runParser (content $ many lispValP) "<stdin>" input of
-  Left err     -> throw err
+  Left err -> throw err
   Right result -> result
 
 parseLispFile :: String -> IO [LispVal]

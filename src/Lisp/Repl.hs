@@ -18,7 +18,7 @@ evalText :: EnvCtx -> Text -> IO Text
 evalText envCtxRef text = do
   result <- runEval (eval . parseLispExpr $ text) envCtxRef
   case result of
-    Left err     -> return . showt $ err
+    Left err -> return . showt $ err
     Right result -> return . showt $ result
 
 evalAndPrint :: EnvCtx -> Text -> IO ()
