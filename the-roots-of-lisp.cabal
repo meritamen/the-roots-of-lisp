@@ -63,9 +63,9 @@ test-suite lisp-test
     main-is:          Main.hs
     build-depends:
                       base >= 4.18.3.0 && <= 4.21.2.0
-                    , hspec
+                    , hspec ^>= 2.11.17
                     , the-roots-of-lisp
-                    , tasty
-                    , tasty-hspec
-                    , text
+                    , tasty ^>= 1.5.4
+                    , tasty-hspec ^>= 1.2.0
+                    , text >= 2.0
     default-extensions: OverloadedStrings
