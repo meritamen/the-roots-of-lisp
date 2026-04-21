@@ -19,7 +19,7 @@ evalWithInitialEnv input = do
 evalWithStd :: Text -> IO (Either LispError LispVal)
 evalWithStd input = do
   envCtx <- initialEnvCtx
-  void . flip runEval envCtx $ load "lispbits/stdlib.lisp" >>= liftM last . mapM eval
+  void . flip runEval envCtx $ load "lisp/stdlib.lisp" >>= liftM last . mapM eval
   runEval (eval . parseLispExpr $ input) envCtx
 
 shouldEvalTo :: IO (Either LispError LispVal) -> Text -> Expectation
