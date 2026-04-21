@@ -1,5 +1,6 @@
 module Lisp.Types (
   LispVal (..)
+  , Prettyprint (..)
   , EnvCtx
   , Eval (..)
   , LispError (..)
@@ -11,7 +12,6 @@ import Data.IORef
 import Data.Map (Map)
 import Data.Text (Text)
 import Data.Text qualified as T
-import TextShow
 
 data LispVal
   = LispSymbol Text
@@ -31,6 +31,9 @@ instance Eq LispVal where
   LispDottedList l lt == LispDottedList r rt = l == r && lt == rt
   _ == _ = False
 
+class Prettyprint a where
+  pp :: a -> Text
+
 instance Show LispVal where
   show = \case
     LispSymbol sym -> T.unpack sym
@@ -42,7 +45,7 @@ instance Show LispVal where
     LispPrimitive _ -> "#<primitive>"
     LispFn _ _ _ -> "#<lambda>"
 
-instance TextShow LispVal where showb = fromString . show
+instance Prettyprint LispVal where pp = T.pack . show
 
 type EnvCtx = IORef (Map Text (IORef LispVal))
 
@@ -61,11 +64,11 @@ data LispError
   | LispErrorUnboundVar Text Text
   deriving Eq
 
-instance TextShow LispError where
-  showb = \case
-    LispErrorWrongArgNumber i args -> "Expected " <> showb i <> " args; found values " <> showb args
-    LispErrorTypeMismatch expected found -> "Invalid type: expected " <> showb expected <> ", found " <> showb found
-    LispErrorBadSpecialForm msg form -> fromText msg <> ": " <> showb form
-    LispErrorUnboundVar msg var -> fromText msg <> ": " <> fromText var
+instance Show LispError where
+  show = \case
+    LispErrorWrongArgNumber i args -> "Expected " <> show i <> " args; found values " <> show args
+    LispErrorTypeMismatch expected found -> "Invalid type: expected " <> show expected <> ", found " <> show found
+    LispErrorBadSpecialForm msg form -> T.unpack msg <> ": " <> show form
+    LispErrorUnboundVar msg var -> T.unpack msg <> ": " <> T.unpack var
 
-instance Show LispError where show = T.unpack . showt
+instance Prettyprint LispError where pp = T.pack . show

@@ -8,7 +8,6 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import System.Console.Haskeline
-import TextShow
 
 import Lisp.Eval
 import Lisp.Parser
@@ -18,8 +17,8 @@ evalText :: EnvCtx -> Text -> IO Text
 evalText envCtxRef text = do
   result <- runEval (eval . parseLispExpr $ text) envCtxRef
   case result of
-    Left err -> return . showt $ err
-    Right result -> return . showt $ result
+    Left err -> return . pp $ err
+    Right result -> return . pp $ result
 
 evalAndPrint :: EnvCtx -> Text -> IO ()
 evalAndPrint envCtxRef text = evalText envCtxRef text >>= TIO.putStrLn

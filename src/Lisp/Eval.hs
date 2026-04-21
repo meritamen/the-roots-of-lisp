@@ -14,7 +14,6 @@ import Data.Map qualified as M
 import Data.Maybe
 import Data.Text (Text)
 import Data.Text.IO qualified as TIO
-import TextShow
 
 import Lisp.Parser
 import Lisp.Types
@@ -70,7 +69,7 @@ eval (LispList (fn:args)) = do
 eval badForm = throwError $ LispErrorBadSpecialForm "Unrecognized special form" badForm
 
 mkFn :: EnvCtx -> [LispVal] -> [LispVal] -> Eval LispVal
-mkFn envCtx params body = return $ LispFn (showt <$> params) body envCtx
+mkFn envCtx params body = return $ LispFn (pp <$> params) body envCtx
 
 handleParams :: LispVal -> Eval [LispVal]
 handleParams LispNil = return mempty
