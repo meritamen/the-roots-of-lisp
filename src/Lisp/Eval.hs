@@ -41,7 +41,7 @@ eval (LispList (LispSymbol "cond":clauses)) = do
 
 eval (LispSymbol varname) = getVar varname
 
-eval (LispList [LispSymbol "quote", (LispList (LispSymbol "lambda":params:body))]) = do
+eval (LispList [LispSymbol "quote", LispList (LispSymbol "lambda":params:body)]) = do
   envCtxRef <- ask
   params' <- handleParams params
   mkFn envCtxRef params' body
