@@ -18,7 +18,8 @@ common warnings
 
 library
     import:           warnings
-    exposed-modules:  Lisp.Cli
+    exposed-modules:  Lisp
+                    , Lisp.Cli
                     , Lisp.Eval
                     , Lisp.Lexer
                     , Lisp.Parser

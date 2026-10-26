@@ -1,6 +1,6 @@
 module Main where
 
-import Lisp.Cli
+import Lisp
 
 main :: IO ()
 main = run
